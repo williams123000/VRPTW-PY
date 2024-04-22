@@ -3,6 +3,9 @@ import json
 import math
 from VRPTWACO import VRPTWACO
 from colorama import Fore
+import time
+import datetime
+from tqdm import tqdm
 
 class Vector:
     def __init__(self):
@@ -208,11 +211,25 @@ def Search_Worse_Soluction (List_FO_Objetive, List_Information_Objetive, List_FO
     
     return Worse_FO, Worse_Information
 
+def Save_Execution (Time_Execution, Best_Information, Worse_Information):
+    Dict_Execution = {
+        "Time_Execution": Time_Execution,
+        "Best_Execution": Best_Information,
+        "Worse_Execution": Worse_Information
+    }
+
+    Name_File = "Results/Execution_" + str(datetime.datetime.now().strftime("%Y-%m-%d")) + ".json"
+    json_file = open(Name_File, "w")
+    json.dump(Dict_Execution, json_file, indent=4)
+    json_file.close()
+
+Start_Program = time.time()
+
 Settings = Load_Settings()
 
-print(Fore.GREEN + "Settings Loaded")
-print(Settings)
-
+print(Fore.GREEN + "📃 Algorithm Differential Evolution for VRPTW ACO 🐜")
+#print(Fore.GREEN + "Settings Loaded")
+#print(Settings)
 
 Size_Poblation = 5
 Factor_Mutation = 0.5
@@ -230,7 +247,12 @@ for i in range(Size_Poblation):
     Vectors_Test.append(Vector())
 
 while Number_Current < Number_Iterations_MAX:
-    print(Fore.GREEN + "Iteration: ", Number_Current)
+    print(Fore.GREEN + "Generation: ", Number_Current)
+
+    total_steps = Size_Poblation * 3  # Tres bucles con tamaño de población
+
+    progress_bar = tqdm(total=total_steps, desc="Processing", unit="step")
+
     for i in range(Size_Poblation):
         Vectors_Noise[i].Reset_Vector()
         Vectors_Test[i].Reset_Vector()
@@ -253,6 +275,7 @@ while Number_Current < Number_Iterations_MAX:
         FO , Information_Evaluation = Evaluate_FO(Vectors_Objective[i], i)
         List_FO_Objetive.append(FO)
         List_Information_Objetive.append(Information_Evaluation)
+        progress_bar.update(1)
 
     List_FO_Noise = []
     List_Information_Noise = []
@@ -261,6 +284,7 @@ while Number_Current < Number_Iterations_MAX:
         FO , Information_Evaluation = Evaluate_FO(Vectors_Noise[i], i)
         List_FO_Noise.append(FO)
         List_Information_Noise.append(Information_Evaluation)
+        progress_bar.update(1)
 
     List_FO_Test = []
     List_Information_Test = []
@@ -269,8 +293,12 @@ while Number_Current < Number_Iterations_MAX:
         FO , Information_Evaluation = Evaluate_FO(Vectors_Test[i], i)
         List_FO_Test.append(FO)
         List_Information_Test.append(Information_Evaluation)
+        progress_bar.update(1)
 
     Update_Objetive(Vectors_Objective, Vectors_Test)
+
+    # Termina la barra de progreso
+    progress_bar.close()
 
     Number_Current += 1
 
@@ -292,3 +320,9 @@ FO_Worse , Information_Worse = Search_Worse_Soluction(List_FO_Objetive, List_Inf
 
 print(Fore.GREEN + "Worse FO: ", FO_Worse)
 print(Information_Worse)
+
+
+End_Program = time.time()
+print(Fore.GREEN + "Time Execution: ", End_Program - Start_Program)
+
+Save_Execution(End_Program - Start_Program, Information_Best, Information_Worse)

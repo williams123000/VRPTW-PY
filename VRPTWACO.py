@@ -355,9 +355,9 @@ def Save_Solution_CSV(Dict):
                     file.write(str(Dict["Routes"][key][ID]) + ",")
 
 def VRPTWACO (Number_Iterations_ , Number_Ants_ , Alpha_ , Beta_ , Gamma_ , Rho_ , Type_Vector_ , Number_Iteration_Vector_ , Name_Instance_):
-    print(Fore.BLUE + "VRPTWACO")
+    #print(Fore.BLUE + "VRPTWACO")
     Params = Parameters(Number_Iterations_, Number_Ants_, Alpha_, Beta_, Gamma_, Rho_, Type_Vector_, Number_Iteration_Vector_)
-    Params.Print_Data()
+    #Params.Print_Data()
 
     Instance_ = Extract_Instance(Name_Instance_)
 
@@ -444,7 +444,7 @@ def VRPTWACO (Number_Iterations_ , Number_Ants_ , Alpha_ , Beta_ , Gamma_ , Rho_
                 Best_Distance = FO
                 Best_Solution_Route = Ants
 
-            print("Best Distance: ", Best_Distance)
+            #print("Best Distance: ", Best_Distance)
 
             Number_Iteration += 1
 
