@@ -219,7 +219,7 @@ def Save_Execution (Time_Execution, Best_Information, Worse_Information):
     }
 
     Name_File = "Results/Execution_" + str(datetime.datetime.now().strftime("%Y-%m-%d")) + ".json"
-    json_file = open(Name_File, "w")
+    json_file = open(Name_File, "x")
     json.dump(Dict_Execution, json_file, indent=4)
     json_file.close()
 
@@ -231,7 +231,7 @@ print(Fore.GREEN + "📃 Algorithm Differential Evolution for VRPTW ACO 🐜")
 #print(Fore.GREEN + "Settings Loaded")
 #print(Settings)
 
-Size_Poblation = 5
+Size_Poblation = 1
 Factor_Mutation = 0.5
 Factor_Crosses = 0.5
 Number_Iterations_MAX = 5
