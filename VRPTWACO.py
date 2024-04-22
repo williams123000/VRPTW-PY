@@ -413,7 +413,7 @@ def VRPTWACO (Number_Iterations_ , Number_Ants_ , Alpha_ , Beta_ , Gamma_ , Rho_
                 break
 
             while True:
-                Ant_Gen = random.randint(0,9)
+                Ant_Gen = random.randint(0,2)
 
                 # Retorna True si se añadió un cliente a la ruta de la hormiga y False si no se añadió
                 Result = Calculate_Probabilities(Ants[Ant_Gen], Customers, List_Taboo, Vehicles_[Ant_Gen], Matrix_Pheromones, Visibility, Params)

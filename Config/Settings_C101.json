@@ -19,6 +19,6 @@
         "MIN" : 10,
         "MAX" : 50
     },
-    "N_Ants": 3,
-    "Instance": "C201.csv"
+    "N_Ants": 10,
+    "Instance": "C101.csv"
 }
