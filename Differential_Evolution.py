@@ -231,10 +231,10 @@ print(Fore.GREEN + "📃 Algorithm Differential Evolution for VRPTW ACO 🐜")
 #print(Fore.GREEN + "Settings Loaded")
 #print(Settings)
 
-Size_Poblation = 1
+Size_Poblation = 5
 Factor_Mutation = 0.5
 Factor_Crosses = 0.5
-Number_Iterations_MAX = 5
+Number_Iterations_MAX = 1
 Number_Current = 0
 
 Vectors_Objective = []
