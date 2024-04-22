@@ -6,7 +6,9 @@ from colorama import Fore
 import time
 import datetime
 from tqdm import tqdm
+import csv
 
+from Modules.Generate_JSON import Generate_JSON
 class Vector:
     def __init__(self):
         self.Alpha = 0.0
@@ -223,6 +225,24 @@ def Save_Execution (Time_Execution, Best_Information, Worse_Information):
     json.dump(Dict_Execution, json_file, indent=4)
     json_file.close()
 
+def Save_Routes (Routes: dict):
+    global Settings
+
+    Name_File = "Results/Routes_" + str(datetime.datetime.now().strftime("%Y-%m-%d")) + ".csv"
+    csv_file = open(Name_File, "w", newline='')
+    writer = csv.writer(csv_file)
+
+    for key in Routes.keys():
+        Route = Routes[key]  # Obtenemos la lista de la ruta directamente
+        writer.writerow(Route)  # Escribimos la lista directamente como una fila en el archivo CSV
+        
+    
+    
+    csv_file.close()
+
+    return Name_File
+
+
 Start_Program = time.time()
 
 Settings = Load_Settings()
@@ -234,7 +254,7 @@ print(Fore.GREEN + "📃 Algorithm Differential Evolution for VRPTW ACO 🐜")
 Size_Poblation = 5
 Factor_Mutation = 0.5
 Factor_Crosses = 0.5
-Number_Iterations_MAX = 1
+Number_Iterations_MAX = 5
 Number_Current = 0
 
 Vectors_Objective = []
@@ -299,30 +319,34 @@ while Number_Current < Number_Iterations_MAX:
 
     # Termina la barra de progreso
     progress_bar.close()
+    print(Fore.GREEN + "Finish Generation 🚀")
 
     Number_Current += 1
 
 
 
 print(Fore.GREEN + "Finish")
-print(List_FO_Objetive)
-print(List_Information_Objetive)
+#print(List_FO_Objetive)
+#print(List_Information_Objetive)
 
-print(List_FO_Test)
-print(List_Information_Test)
+#print(List_FO_Test)
+#print(List_Information_Test)
 
 FO_Best , Information_Best = Search_Best_Soluction(List_FO_Objetive, List_Information_Objetive, List_FO_Test, List_Information_Test)
 
 print(Fore.GREEN + "Best FO: ", FO_Best)
-print(Information_Best)
+#print(Information_Best)
 
 FO_Worse , Information_Worse = Search_Worse_Soluction(List_FO_Objetive, List_Information_Objetive, List_FO_Test, List_Information_Test)
 
 print(Fore.GREEN + "Worse FO: ", FO_Worse)
-print(Information_Worse)
+#print(Information_Worse)
 
 
 End_Program = time.time()
 print(Fore.GREEN + "Time Execution: ", End_Program - Start_Program)
 
 Save_Execution(End_Program - Start_Program, Information_Best, Information_Worse)
+Name_File_Best = Save_Routes(Information_Best["Routes"])
+
+Generate_JSON(Settings["Instance"], Name_File_Best)
