@@ -219,7 +219,7 @@ def Save_Execution (Time_Execution, Best_Information, Worse_Information):
     }
 
     Name_File = "Results/Execution_" + str(datetime.datetime.now().strftime("%Y-%m-%d")) + ".json"
-    json_file = open(Name_File, "x")
+    json_file = open(Name_File, "w")
     json.dump(Dict_Execution, json_file, indent=4)
     json_file.close()
 
