@@ -1,0 +1,24 @@
+{
+    "Alpha": {
+        "MIN" : 0.5,
+        "MAX" : 2.0
+    },
+    "Beta": {
+        "MIN" : 1.5,
+        "MAX" : 2.0
+    },
+    "Gamma": {
+        "MIN" : 0.5,
+        "MAX" : 2.0
+    },
+    "Rho":{
+        "MIN" : 0.1,
+        "MAX" : 0.9
+    },
+    "N_Iterations":{
+        "MIN" : 10,
+        "MAX" : 50
+    },
+    "N_Ants": 10,
+    "Instance": "C101.csv"
+}
