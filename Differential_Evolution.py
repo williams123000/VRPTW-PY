@@ -251,7 +251,7 @@ while Number_Current < Number_Iterations_MAX:
 
     total_steps = Size_Poblation * 3  # Tres bucles con tamaño de población
 
-    progress_bar = tqdm(total=total_steps, desc="Processing", unit="step")
+    progress_bar = tqdm(total=total_steps, desc="Processing", unit="step", unit_scale=True)
 
     for i in range(Size_Poblation):
         Vectors_Noise[i].Reset_Vector()
