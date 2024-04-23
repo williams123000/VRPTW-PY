@@ -2,6 +2,8 @@
 Autor: Williams Chan Pescador
 Descripción: Este script se encarga de leer un archivo txt que contiene los datos de una instancia y
 convertirlo a un archivo CSV.
+
+Esto para poder leer los datos de la instancia en un formato más amigable y poder manipularlos de manera más sencilla.
 """
 
 import csv
@@ -29,12 +31,11 @@ def txt_to_csv(input_file, output_file, name_instance):
             data = line.split()
             writer.writerow(data)
             
+# Función para convertir un archivo .txt a .csv
 def Convert(Name_Instance):
-    # Especifica las rutas de los directorios aquí
-    input_directory = "VRP_Solomon/"
-    output_directory = "Instances/"
+    input_directory = "VRP_Solomon/" # Directorio de entrada
+    output_directory = "Instances/" # Directorio de salida
 
-    txt_file = os.path.join(input_directory, Name_Instance.split(".")[0] + ".txt")
-    csv_file = os.path.join(output_directory, Name_Instance.split(".")[0] + ".csv")
+    txt_file = os.path.join(input_directory, Name_Instance.split(".")[0] + ".txt") # Archivo de entrada
+    csv_file = os.path.join(output_directory, Name_Instance.split(".")[0] + ".csv") # Archivo de salida 
     txt_to_csv(txt_file, csv_file, Name_Instance.split(".")[0])
-    #print(f"Se ha convertido {txt_file} a {csv_file}")

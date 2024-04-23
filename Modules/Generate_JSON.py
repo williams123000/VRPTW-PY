@@ -3,6 +3,8 @@ Autor: Williams Chan Pescador
 Descripción: Este script se encarga de leer un archivo CSV que contiene los datos de una instancia y 
 convertirlo a un diccionario. Luego, lee un archivo CSV que contiene la mejor ruta y lo convierte a un diccionario. 
 Finalmente, fusiona ambos diccionarios en un solo diccionario y lo convierte a un formato JSON.
+
+Esto para guardar la mejor ruta en un archivo JSON que será utilizado para la visualización en la página web.
 """
 import json
 import sys
@@ -97,7 +99,7 @@ def Fusion (Instance, Best_Route):
     
     return json_string
 
-
+# Función para guardar el archivo JSON para la visualización en la página web de la mejor ruta
 def Save_JSON (JSON):
     # Guarda el archivo JSON
     with open("Results/Web_Best_Route.json", "w") as file:
@@ -106,17 +108,12 @@ def Save_JSON (JSON):
 
 
 
-
+# Función principal para generar el archivo JSON
 def Generate_JSON(Name_Instance, Name_File_Best_Route):
-    # Obtiene el nombre del archivo de la instancia
 
-    Instance = Dict_Instance(Name_Instance) # Llama a la función Dict_Instance
+    Instance = Dict_Instance(Name_Instance) # Llama a la función Dict_Instance para obtener la instancia
 
-
-
-
-    # Crea un diccionario para almacenar la mejor ruta (en formato de diccionario)
-    Best_Route = Dic_Best_Route(Name_File_Best_Route)
+    Best_Route = Dic_Best_Route(Name_File_Best_Route) # Llama a la función Dic_Best_Route para obtener la mejor ruta
 
     # Llama a la función Fusion para fusionar la instancia y la mejor ruta en un solo diccionario y convertirlo a un formato JSON 
     JSON_Best = Fusion(Instance, Best_Route)
