@@ -6,11 +6,22 @@
 [![Python](https://img.shields.io/badge/Python-v3.12.0-green?style=flat&logo=python&logoColor=ffffff)](https://www.python.org/)
 
 ## Introducción
+Bienvenido al repositorio de Rutas de vehículos con ventanas de tiempo (VRPTW). Este proyecto se enfoca en el desarrollo de algoritmos eficientes para resolver el Problema de Ruteo de Vehículos con Ventanas de Tiempo (VRPTW) utilizando técnicas de optimización como colonias de hormigas y evolución diferencial.
 
+El VRPTW es un problema clásico en el campo de la logística y la gestión de transporte, que consiste en determinar las rutas óptimas para un conjunto de vehículos que deben atender un conjunto de clientes dentro de un horario predefinido, minimizando los costos operativos y cumpliendo con las restricciones de tiempo de llegada a cada cliente.
 ## Objetivo
+El objetivo principal de este proyecto es diseñar e implementar algoritmos que permitan encontrar soluciones óptimas o cercanas a la óptima para el Problema de Ruteo de Vehículos con Ventanas de Tiempo, contribuyendo así al campo de la logística y la gestión de transporte. Específicamente, se busca:
+
+Desarrollar algoritmos eficientes basados en colonias de hormigas y evolución diferencial para la resolución del VRPTW.
+Comparar y evaluar el rendimiento de los algoritmos propuestos en términos de calidad de solución y tiempo de ejecución.
+Proporcionar una implementación de referencia que pueda ser utilizada como punto de partida para futuras investigaciones en el área.
 
 ## Descripción del proyecto
+Este repositorio contiene implementaciones en Python de algoritmos de colonias de hormigas y evolución diferencial para resolver el VRPTW. El código se organiza en dos principales archivos:
 
+VRPTWACO.py: Implementación del algoritmo de colonias de hormigas (Ant Colony Optimization, ACO).
+Differential_Evolution.py: Implementación del algoritmo de evolución diferencial (Differential Evolution, DE).
+Además, se incluyen scripts adicionales para la generación de instancias de prueba y la visualización de resultados. El proyecto está diseñado para ser modular y extensible, lo que permite a los usuarios adaptarlo fácilmente a diferentes contextos y requerimientos específicos.
 ## Ejecución del proyecto
 
 
