@@ -24,7 +24,9 @@ Este repositorio contiene implementaciones en Python de algoritmos de colonias d
   
 Además, se incluyen scripts adicionales para la generación de instancias de prueba y la visualización de resultados. El proyecto está diseñado para ser modular y extensible, lo que permite a los usuarios adaptarlo fácilmente a diferentes contextos y requerimientos específicos.
 
-![](https://github.com/williams123000/VRPTW-PY/blob/main/Imgs/VRPTW.png)
+<p align="center">
+  <img src="https://github.com/williams123000/VRPTW-PY/blob/main/Imgs/VRPTW.png">
+</p>
 
 ## Ejecución del proyecto
 
