@@ -19,8 +19,8 @@ Proporcionar una implementación de referencia que pueda ser utilizada como punt
 ## Descripción del proyecto
 Este repositorio contiene implementaciones en Python de algoritmos de colonias de hormigas y evolución diferencial para resolver el VRPTW. El código se organiza en dos principales archivos:
 
-VRPTWACO.py: Implementación del algoritmo de colonias de hormigas (Ant Colony Optimization, ACO).
-Differential_Evolution.py: Implementación del algoritmo de evolución diferencial (Differential Evolution, DE).
+- ** VRPTWACO.py: ** Implementación del algoritmo de colonias de hormigas (Ant Colony Optimization, ACO).
+- ** Differential_Evolution.py: ** Implementación del algoritmo de evolución diferencial (Differential Evolution, DE).
 Además, se incluyen scripts adicionales para la generación de instancias de prueba y la visualización de resultados. El proyecto está diseñado para ser modular y extensible, lo que permite a los usuarios adaptarlo fácilmente a diferentes contextos y requerimientos específicos.
 ## Ejecución del proyecto
 
