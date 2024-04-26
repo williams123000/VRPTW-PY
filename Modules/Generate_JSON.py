@@ -9,7 +9,8 @@ Esto para guardar la mejor ruta en un archivo JSON que será utilizado para la v
 import json
 import sys
 import csv
-
+import os
+import datetime
 # Función para leer el archivo CSV y convertirlo a un diccionario (Instancia)
 def Dict_Instance (filename : str):
     # Ruta del archivo CSV
@@ -67,9 +68,15 @@ def Dic_Best_Route (Name_File_Best_Route):
     return Dict_Best_Route
 
 # Función para fusionar la instancia y la mejor ruta en un solo diccionario
-def Fusion (Instance, Best_Route):
+def Fusion (Instance, Best_Route, Name):
     # Crea una lista vacía para almacenar los datos fusionados
     Data_Fusion = []
+
+    Name_Instance = {
+        "Name_Instance" : Name
+    }
+
+    Data_Fusion.append(Name_Instance)
     # Crea un contador para asignar un ID a cada ruta
     Counter_Route = 1
     
@@ -102,7 +109,8 @@ def Fusion (Instance, Best_Route):
 # Función para guardar el archivo JSON para la visualización en la página web de la mejor ruta
 def Save_JSON (JSON):
     # Guarda el archivo JSON
-    with open("Results/Web_Best_Route.json", "w") as file:
+
+    with open("Results/Web_Best_Route_" + str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")) + ".json", "w") as file:
         file.write(JSON)
 
 
@@ -114,9 +122,12 @@ def Generate_JSON(Name_Instance, Name_File_Best_Route):
     Instance = Dict_Instance(Name_Instance) # Llama a la función Dict_Instance para obtener la instancia
 
     Best_Route = Dic_Best_Route(Name_File_Best_Route) # Llama a la función Dic_Best_Route para obtener la mejor ruta
-
+    
+    Name, Ext = os.path.splitext(Name_Instance)
     # Llama a la función Fusion para fusionar la instancia y la mejor ruta en un solo diccionario y convertirlo a un formato JSON 
-    JSON_Best = Fusion(Instance, Best_Route)
+    JSON_Best = Fusion(Instance, Best_Route, Name)
 
     # Guarda el archivo JSON
     Save_JSON(JSON_Best)
+
+    return JSON_Best

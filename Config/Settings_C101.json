@@ -20,5 +20,6 @@
         "MAX" : 50
     },
     "N_Ants": 10,
-    "Instance": "C101.csv"
+    "Instance": "C101.csv",
+    "Customers": 100
 }

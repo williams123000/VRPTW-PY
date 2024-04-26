@@ -236,6 +236,7 @@ def Calculate_Numerator(Origin: Customer, Destination: Customer, Alpha, Beta, Ga
     Value_Times = 1.0 / Due_Time if Due_Time > 0 else 0.0 # Tiempo de viaje entre el origen y el destino 
 
     Numerator = (Value_Pheromone**Alpha) * (Value_Visibility**Beta) * (Value_Times**Gamma) # Calcular el numerador de la probabilidad de selección
+    #Numerator = (Value_Pheromone**Alpha) * (Value_Visibility**Beta) # Calcular el numerador de la probabilidad de selección
 
     return Numerator
 
@@ -427,7 +428,7 @@ def VRPTWACO (Number_Iterations_ , Number_Ants_ , Alpha_ , Beta_ , Gamma_ , Rho_
     Number_Iteration = 0
 
     Dicc_Routes = {} # Diccionario de las rutas
-
+   
     while Number_Iteration < Params.Number_Iterations: # Mientras el número de iteraciones sea menor al número de iteraciones ingresado por el script Differential_Evolution.py
         
         List_Taboo = [] # Lista de tabú 
@@ -449,14 +450,14 @@ def VRPTWACO (Number_Iterations_ , Number_Ants_ , Alpha_ , Beta_ , Gamma_ , Rho_
         Try = True # Variable booleana para verificar si se añadió un cliente a la ruta de la hormiga
 
         Number_Try = 0 
-
+        
         for j in range(100): # Mientras el número de intentos sea menor a 100 
 
             if Try == False: # Si no se añadió un cliente a la ruta de la hormiga 
                 break
 
             while True: # Mientras sea verdadero 
-                Ant_Gen = random.randint(0,2) # Se selecciona una hormiga aleatoria 
+                Ant_Gen = random.randint(0,Number_Ants_ - 1) # Se selecciona una hormiga aleatoria 
 
                 # Retorna True si se añadió un cliente a la ruta de la hormiga y False si no se añadió
                 Result = Calculate_Probabilities(Ants[Ant_Gen], Customers, List_Taboo, Vehicles_[Ant_Gen], Matrix_Pheromones, Visibility, Params)
@@ -464,7 +465,7 @@ def VRPTWACO (Number_Iterations_ , Number_Ants_ , Alpha_ , Beta_ , Gamma_ , Rho_
                 if not Result: # Si no se añadió un cliente a la ruta de la hormiga
                     Number_Try += 1 # Se incrementa el contador de intentos
 
-                    if Number_Try == 10: # Si la hormiga no puede añadir un cliente a la ruta, se cambia de hormiga
+                    if Number_Try == 20: # Si la hormiga no puede añadir un cliente a la ruta, se cambia de hormiga
                         Try = False
                         
                         break       

@@ -4,12 +4,12 @@
         "MAX" : 2.0
     },
     "Beta": {
-        "MIN" : 1.5,
-        "MAX" : 2.0
+        "MIN" : 2.0,
+        "MAX" : 10.0
     },
     "Gamma": {
-        "MIN" : 0.5,
-        "MAX" : 2.0
+        "MIN" : 2.0,
+        "MAX" : 10.0
     },
     "Rho":{
         "MIN" : 0.1,
@@ -19,7 +19,7 @@
         "MIN" : 10,
         "MAX" : 50
     },
-    "N_Ants": 3,
-    "Instance": "C201.csv",
+    "N_Ants": 10,
+    "Instance": "C105.csv",
     "Customers": 100
 }

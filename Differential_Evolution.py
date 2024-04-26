@@ -16,7 +16,7 @@ import time
 import datetime
 from tqdm import tqdm
 import csv
-
+import os
 from Modules.Generate_JSON import Generate_JSON # Importamos la función Generate_JSON del módulo Generate_JSON en la carpeta Modules 
 
 # Clase Vector para almacenar los parámetros de la solución
@@ -149,7 +149,7 @@ def Initialize_Test (Vectors_Objective, Vectors_Test, Vectors_Noise, Factor_Cros
         else:
             Vectors_Test[i].Gamma = Vectors_Objective[i].Gamma # Asigna el valor de Gamma del vector objetivo al vector de prueba
 
-        Number_Random = random.uniform(0.1, 0.9) # Asigna un valor aleatorio entre 0.1 y 0.9 a la variable Number_Random 
+        Number_Random = random.uniform(0, 1) # Asigna un valor aleatorio entre 0.1 y 0.9 a la variable Number_Random 
 
         if Number_Random <= Factor_Crosses: # Si el valor de Number_Random es menor o igual al Factor_Cruza 
             Vectors_Test[i].Rho = Vectors_Noise[i].Rho # Asigna el valor de Rho del vector de ruido al vector de prueba
@@ -235,13 +235,21 @@ def Search_Worse_Soluction (List_FO_Objetive, List_Information_Objetive, List_FO
 
 # Función para guardar los resultados de la ejecución en un archivo JSON 
 def Save_Execution (Time_Execution, Best_Information, Worse_Information):
+    global Settings
+
+    Name_Instance = Settings["Instance"]
+    Name, Ext = os.path.splitext(Name_Instance)
     Dict_Execution = {
+        "Name_Instance": Name,
+        "Customers": Settings["Customers"],
+        "Vehicles": Settings["N_Ants"],
+        "Routes": Settings["N_Ants"],
         "Time_Execution": Time_Execution, # Tiempo de ejecución
         "Best_Execution": Best_Information, # Mejor información de la ruta 
         "Worse_Execution": Worse_Information # Peor información de la ruta
     }
 
-    Name_File = "Results/Execution_" + str(datetime.datetime.now().strftime("%Y-%m-%d")) + ".json" # Nombre del archivo con la fecha actual
+    Name_File = "Results/Execution_" + str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")) + ".json" # Nombre del archivo con la fecha actual
     json_file = open(Name_File, "w") 
     json.dump(Dict_Execution, json_file, indent=4) # Guarda el diccionario en el archivo JSON
     json_file.close() 
@@ -271,7 +279,7 @@ print(Fore.GREEN + "📃 Algorithm Differential Evolution for VRPTW ACO 🐜")
 
 #print(Settings)
 
-Size_Poblation = 5 # Tamaño de la población
+Size_Poblation = 20 # Tamaño de la población
 Factor_Mutation = 0.5  # Factor de mutación
 Factor_Crosses = 0.5 # Factor de cruza
 Number_Iterations_MAX = 5 # Número máximo de iteraciones
@@ -338,7 +346,7 @@ while Number_Current < Number_Iterations_MAX: # Mientras el número actual de it
     Update_Objetive(Vectors_Objective, Vectors_Test) # Actualiza el vector objetivo con el vector de prueba si la función objetivo es menor 
 
     progress_bar.close() # Cierra la barra de progreso
-    print(Fore.GREEN + "Finish Generation 🚀") 
+    print(Fore.GREEN + "Finish Generation 🚗") 
 
     Number_Current += 1 # Aumenta el número actual de iteraciones
 
@@ -370,3 +378,4 @@ Save_Execution(End_Program - Start_Program, Information_Best, Information_Worse)
 Name_File_Best = Save_Routes(Information_Best["Routes"]) # Guarda las rutas en un archivo CSV 
 
 Generate_JSON(Settings["Instance"], Name_File_Best) # Genera el archivo JSON para la visualización en la página web de la mejor ruta 
+
