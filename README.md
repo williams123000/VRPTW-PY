@@ -23,7 +23,7 @@ Este repositorio contiene implementaciones en Python de algoritmos de colonias d
 - Differential_Evolution.py: Implementación del algoritmo de evolución diferencial (Differential Evolution, DE).
   
 Además, se incluyen scripts adicionales para la generación de instancias de prueba y la visualización de resultados. El proyecto está diseñado para ser modular y extensible, lo que permite a los usuarios adaptarlo fácilmente a diferentes contextos y requerimientos específicos.
-[<img src="https://www.researchgate.net/profile/Emrah-Demir-2/publication/273112998/figure/fig1/AS:668977990754315@1536508190687/A-graphical-representation-of-the-VRPTW.jpg" width=120 height=120>]
+<img src="https://www.researchgate.net/profile/Emrah-Demir-2/publication/273112998/figure/fig1/AS:668977990754315@1536508190687/A-graphical-representation-of-the-VRPTW.jpg" width=120 height=120>
 ## Ejecución del proyecto
 
 
